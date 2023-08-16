@@ -1,0 +1,26 @@
+<h1>投稿一覧</h1>
+<table>
+  <tr>
+    <th>画像</th>
+    <th>内容</th>
+    <th>ユーザー</th>
+  </tr>
+  <% @pictures.each do |picture| %>
+    <tr>
+      <td><%= image_tag picture.image.url %></td>
+      <td><%= picture.content %></td>
+      <td>
+        <button type="button" class="btn btn-light">
+        <%= link_to "詳細を確認する", picture_path(picture.id) %>
+        </button><br><br>
+        <button type="button" class="btn btn-light">
+        <%= link_to "編集する", edit_picture_path(picture.id), data: { confirm: "本当に編集していいですか？"} %>
+        </button><br><br>
+        <button type="button" class="btn btn-light">
+        <%= link_to "削除する", picture_path(picture.id), data: { confirm: "本当に削除していいですか？"}, method: :delete %>
+      </button></td>
+    </tr>
+  <% end %>
+</table>
+<br>
+<button type="button" class="btn btn-light"><%= link_to '新しく投稿する', new_picture_path %></button>

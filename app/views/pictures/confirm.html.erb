@@ -1,0 +1,9 @@
+<h1>投稿確認</h1>
+<%= form_with(model: @picture, local: true) do |form| %>
+  <p>画像： <%= image_tag(@picture.image.url) if @picture.image && @picture.image.url %>
+  <%= form.hidden_field :image_cache %>
+  <p>内容： <%= @picture.content %></p>
+  <%= form.hidden_field :content %>
+  <%= form.submit "投稿を確定する" %>
+  <%= form.submit "戻る", name: "back" %>
+<% end %>

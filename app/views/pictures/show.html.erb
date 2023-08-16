@@ -1,0 +1,11 @@
+<h1>詳細画面</h1>
+<p id="notice"><%= notice %></p>
+<p>画像：<%= image_tag @picture.image.url %></p>
+<p>内容：<%= @picture.content %></p>
+<button type="button" class="btn btn-light">
+  <%= link_to '編集する', edit_picture_path(@picture) %>
+</button>
+<br>
+<button type="button" class="btn btn-light">
+<%= link_to '一覧画面に戻る', pictures_path %>
+</button>
