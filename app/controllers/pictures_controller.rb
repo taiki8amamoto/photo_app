@@ -32,9 +32,9 @@ class PicturesController < ApplicationController
 
   def edit
     @picture = Picture.find(params[:id])
-    # unless current_user == @picture.user
-    #   redirect_to pictures_path, notice: "他のユーザーの投稿は編集できません！"
-    # end
+    unless current_user == @picture.user
+      redirect_to pictures_path, notice: "他のユーザーの投稿は編集できません！"
+    end
   end
 
   def update
