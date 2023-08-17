@@ -9,6 +9,7 @@
     <tr>
       <td><%= image_tag picture.image.url %></td>
       <td><%= picture.content %></td>
+      <td><%= picture.user.name %></td>
       <td>
         <button type="button" class="btn btn-light">
         <%= link_to "詳細を確認する", picture_path(picture.id) %>
