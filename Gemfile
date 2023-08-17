@@ -22,6 +22,7 @@ group :development do
   gem 'listen', '~> 3.3'
   gem 'spring'
   gem 'letter_opener_web'
+  gem 'faker'
 end
 
 group :test do
