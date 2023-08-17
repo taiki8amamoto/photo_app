@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  mount LetterOpenerWeb::Engine, at: "/mail_opener" if Rails.env.development?
   root 'sessions#new'
   resources :favorites, only: [:index, :create, :destroy]
   resources :sessions, only: [:new, :create, :destroy]
