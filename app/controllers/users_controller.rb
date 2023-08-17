@@ -1,6 +1,10 @@
 class UsersController < ApplicationController
-  skip_before_action :login_required, only: [:new, :create]
+  skip_before_action :login_required, only: [:new, :create, :index]
   
+  def index
+    @users = User.all
+  end
+
   def new
     @user = User.new
   end
@@ -21,6 +25,9 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
+    unless current_user.id == @user.id
+      redirect_to user_path, notice: "他のユーザーのプロフィールは編集できません！"
+    end
   end
 
   def update

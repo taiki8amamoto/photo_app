@@ -1,4 +1,4 @@
-<h1><%= @user.name %>のプロフィール編集</h1>
+<h1><%= @user.name %>のプロフィール編集</h1><br>
 <%= form_with( model: @user, local: true ) do |form| %>
   <% if @user.errors.any? %>
     <div id="error_expanation">

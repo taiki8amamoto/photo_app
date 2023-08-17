@@ -1,17 +1,21 @@
-<h1><%= @user.name %>のページ</h1>
-<br>
+<h1><%= @user.name %>のページ</h1><br>
 <p>名前: <%= @user.name %></p>
-<br>
 <p>メールアドレス: <%= @user.email %></p>
-<br>
+
 <% if @user.image && @user.image.url %>
   <p>プロフィール画像：<%= image_tag(@user.image.url) %></p>
 <% else %>
   <p>プロフィール画像：登録されていません。</p>
 <% end %>
+
+<% if current_user.id == @user.id %>
+  <button type="button" class="btn btn-light">
+  <%= link_to "プロフィール編集へ", edit_user_path %></td>
+  </button>
+<% end %>
 <button type="button" class="btn btn-light">
 <%= link_to "投稿一覧へ", pictures_path %></td>
 </button>
 <button type="button" class="btn btn-light">
-<%= link_to "プロフィール編集へ", edit_user_path %></td>
+<%= link_to "ユーザー一覧へ", users_path %></td>
 </button>

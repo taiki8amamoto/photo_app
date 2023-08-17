@@ -15,15 +15,19 @@
     <%= content_tag(:div, value, class: "#{key}") %>
   <% end %>
   <% if logged_in? %>
-    <button type="button" class="btn btn-light">
-    <%= link_to "Profile", user_path(current_user.id) %>
-    </button>
-    <button type="button" class="btn btn-light">
-    <%= link_to "Logout", session_path(current_user.id), method: :delete %>
-    </button>
+    <p><%= current_user.name %>でログイン中です。
+      <button type="button" class="btn btn-light">
+      <%= link_to "プロフィールを確認", user_path(current_user.id) %>
+      </button>
+      <button type="button" class="btn btn-light">
+      <%= link_to "ログアウトする", session_path(current_user.id), method: :delete %>
+      </button>
+    </p>
+    <br>
   <% else %>
     <%= link_to "Sign up", new_user_path %>
     <%= link_to "Login", new_session_path %>
+    <br>
   <% end %>
     <%= yield %>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
