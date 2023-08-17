@@ -15,7 +15,7 @@
     <%= content_tag(:div, value, class: "#{key}") %>
   <% end %>
   <% if logged_in? %>
-    <p><%= current_user.name %>でログイン中です。
+    <p><%= current_user.name %>でログイン中
       <button type="button" class="btn btn-light">
       <%= link_to "プロフィールを確認", user_path(current_user.id) %>
       </button>
