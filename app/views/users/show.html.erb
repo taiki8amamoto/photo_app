@@ -5,7 +5,7 @@
 <% if @user.image && @user.image.url %>
   <p>プロフィール画像：<%= image_tag(@user.image.url) %></p>
 <% else %>
-  <p>プロフィール画像：登録されていません。</p>
+  <p>プロフィール画像：未登録</p>
 <% end %>
 
 <% if current_user.id == @user.id %>

@@ -30,12 +30,14 @@ class PicturesController < ApplicationController
 
   def show
     @picture = Picture.find(params[:id])
+    @favorite = current_user.favorites.find_by(picture_id: @picture.id)
   end
 
   def edit
     @picture = Picture.find(params[:id])
     unless current_user.id == @picture.user.id
-      redirect_to pictures_path, notice: "他のユーザーの投稿は編集できません！"
+      flash.now[:danger] = "他のユーザーの投稿は編集できません！"
+      render :show
     end
   end
 
@@ -50,8 +52,13 @@ class PicturesController < ApplicationController
 
   def destroy
     @picture = Picture.find(params[:id])
-    @picture.destroy
-    redirect_to pictures_path, notice: "投稿を削除しました！"
+    if current_user.id == @picture.user.id
+      @picture.destroy
+      redirect_to pictures_path, notice: "投稿を削除しました！"
+    else
+      flash.now[:danger] = "他のユーザーの投稿は削除できません！"
+      render :show
+    end
   end
 
   private

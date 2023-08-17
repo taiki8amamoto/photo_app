@@ -7,19 +7,21 @@
   </tr>
   <% @pictures.each do |picture| %>
     <tr>
-      <td><%= image_tag picture.image.url %></td>
+      <td><%= image_tag picture.image.url, class: 'sized' %></td>
       <td><%= picture.content %></td>
       <td><%= picture.user.name %></td>
       <td>
         <button type="button" class="btn btn-light">
         <%= link_to "詳細を確認する", picture_path(picture.id) %>
         </button><br>
-        <button type="button" class="btn btn-light">
-        <%= link_to "編集する", edit_picture_path(picture.id), data: { confirm: "本当に編集していいですか？"} %>
-        </button><br>
-        <button type="button" class="btn btn-light">
-        <%= link_to "削除する", picture_path(picture.id), data: { confirm: "本当に削除していいですか？"}, method: :delete %>
-      </button></td>
+          <% if current_user.id == picture.user_id %>
+            <button type="button" class="btn btn-light">
+            <%= link_to "編集する", edit_picture_path(picture.id), data: { confirm: "本当に編集していいですか？"} %>
+            </button><br>
+            <button type="button" class="btn btn-light">
+            <%= link_to "削除する", picture_path(picture.id), data: { confirm: "本当に削除していいですか？"}, method: :delete %>
+            </button></td>
+          <% end %>
     </tr>
   <% end %>
 </table>
