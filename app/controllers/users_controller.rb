@@ -20,15 +20,21 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @picture = Picture.find(params[:id])
-    unless current_user == @picture.user
-      redirect_to pictures_path, notice: "他のユーザーの投稿は編集できません！"
+    @user = User.find(params[:id])
+  end
+
+  def update
+    @user = User.find(params[:id])
+    if @user.update(user_params)
+      redirect_to user_path, notice: "プロフィールを編集しました！"
+    else
+      render :edit
     end
   end
 
   private
 
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation)
+    params.require(:user).permit(:name, :email, :password, :password_confirmation, :image)
   end
 end
